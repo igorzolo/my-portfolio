@@ -3,6 +3,8 @@ import './App.css'
 import Reveal from './components/Reveal'
 import ThemeToggle from './components/ThemeToggle'
 import Typewriter from './components/Typewriter'
+import ScrollProgress from './components/ScrollProgress'
+import BackToTop from './components/BackToTop'
 
 function App() {
   const projects = [
@@ -51,6 +53,8 @@ const filteredProjects = activeTag === 'all'
 
   return (
     <div className="container">
+
+      <ScrollProgress />
 
       <nav className="navbar animate-fade-up">
         <a href="#about">Обо мне</a>
@@ -216,6 +220,9 @@ const filteredProjects = activeTag === 'all'
 
         </footer>
       </Reveal>
+
+      <BackToTop />
+
     </div>
   )
 }

@@ -346,7 +346,7 @@ header p {
   border-radius: 14px;
   padding: 22px 24px;
   width: 100%;
-  max-width: 320px;
+  max-width: 100%;
   height: 100%;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -475,3 +475,143 @@ header p {
   padding: 40px 0;
   font-style: italic;
 }
+
+/* --- Полоса прогресса прокрутки --- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    var(--accent-green), 
+    var(--accent-blue), 
+    var(--accent-purple)
+  );
+  box-shadow: 0 0 12px rgba(110, 231, 183, 0.5);
+  transition: width 0.1s linear;
+}
+
+/* --- Плашка с текстом --- */
+.scroll-progress-text {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 10px;
+  background: var(--bg-card-transparent);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: 0.85rem;
+  color: var(--text);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  
+  /* Изначально скрыта */
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-progress-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-percent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  padding: 2px 8px;
+  background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+  color: #0f1115;
+  font-weight: 700;
+  font-size: 0.75rem;
+  border-radius: 999px;
+}
+
+.scroll-message {
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* На мобильном — уменьшаем и переносим */
+@media (max-width: 640px) {
+  .scroll-progress-text {
+    top: 12px;
+    right: 12px;
+    font-size: 0.75rem;
+    padding: 6px 10px 6px 8px;
+    gap: 8px;
+  }
+  
+  .scroll-message {
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* --- Кнопка «Наверх» --- */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 998;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+  color: #0f1115;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s ease;
+
+  /* Скрыта по умолчанию */
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 32px rgba(110, 231, 183, 0.5);
+}
+
+.back-to-top:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@media (max-width: 640px) {
+  .back-to-top {
+    bottom: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
