@@ -1,0 +1,111 @@
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* --- Тёмная тема (по умолчанию) --- */
+:root {
+  --bg-base: #1a1033;
+  --bg-card: #1a1d24;
+  --bg-card-transparent: rgba(26, 29, 36, 0.7);
+  --bg-navbar: rgba(26, 29, 36, 0.6);
+
+  --border: #262b35;
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-footer: rgba(255, 255, 255, 0.06);
+
+  --text: #e6e6e6;
+  --text-muted: #9ca3af;
+  --text-subtle: #6b7280;
+  --text-heading: #ffffff;
+
+  --accent-green: #6ee7b7;
+  --accent-blue: #3b82f6;
+  --accent-purple: #a78bfa;
+
+  --tag-bg: #262b35;
+  --tag-text-green: #6ee7b7;
+  --tag-text-blue: #3b82f6;
+}
+
+/* --- Светлая тема --- */
+:root[data-theme="light"] {
+  --bg-base: #ececf2;
+  --bg-card: #fafafd;
+  --bg-card-transparent: rgba(255, 255, 255, 0.75);
+  --bg-navbar: rgba(255, 255, 255, 0.7);
+
+  --border: #e2e2e8;
+  --border-light: rgba(0, 0, 0, 0.08);
+  --border-footer: rgba(0, 0, 0, 0.06);
+
+  --text: #1a1d24;
+  --text-muted: #4a4a55;
+  --text-subtle: #6b7280;
+  --text-heading: #0f1115;
+
+  --accent-green: #059669;
+  --accent-blue: #2563eb;
+  --accent-purple: #7c3aed;
+
+  --tag-bg: #eef0f4;
+  --tag-text-green: #047857;
+  --tag-text-blue: #1d4ed8;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 30px;
+  overflow-x: hidden;
+}
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  z-index: -1;
+
+  background-image: conic-gradient(
+    from calc(140deg + var(--angle)) at -8% -8%,
+    rgba(168, 85, 247, 0.50)   0deg,
+    rgba(249, 115, 22, 0.48)  70deg,
+    rgba(59, 130, 246, 0.48) 150deg,
+    rgba(168, 85, 247, 0.48) 230deg,
+    rgba(249, 115, 22, 0.48) 280deg,
+    rgba(59, 130, 246, 0.50) 320deg,
+    rgba(168, 85, 247, 0.50) 360deg
+  );
+
+  animation: spin 40s linear infinite;
+  transition: opacity 0.4s ease;
+}
+
+/* В светлой теме градиент делаем деликатнее */
+:root[data-theme="light"] body::before {
+  opacity: 0.9;
+}
+
+@keyframes spin {
+  from { --angle: 0deg; }
+  to   { --angle: 360deg; }
+}
