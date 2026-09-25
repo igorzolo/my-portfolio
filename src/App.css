@@ -397,6 +397,11 @@ header p {
   font-size: 0.85rem;
 }
 
+/* Растянуть форму связи на обе колонки футера */
+.footer > .reveal {
+  grid-column: 1 / -1;
+}
+
 /* --- Scroll reveal --- */
 .reveal {
   opacity: 0;
@@ -612,6 +617,125 @@ header p {
     right: 16px;
     width: 42px;
     height: 42px;
+  }
+}
+
+/* --- Форма связи --- */
+.contact-section {
+  grid-column: 1 / -1;
+  max-width: 620px;      /* ✨ ограничиваем ширину */
+  margin: 40px auto 0;   /* ✨ центрируем по горизонтали */
+  padding: 30px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.contact-section h2 {
+  color: var(--text-heading);
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.contact-subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-subtle);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-btn {
+  padding: 14px;
+  background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+  color: #0f1115;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-message {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.form-message.success {
+  color: var(--accent-green);
+  background: rgba(110, 231, 183, 0.1);
+  border: 1px solid rgba(110, 231, 183, 0.2);
+}
+
+.form-message.error {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .contact-section {
+    padding: 20px;
   }
 }
 

@@ -5,6 +5,7 @@ import ThemeToggle from './components/ThemeToggle'
 import Typewriter from './components/Typewriter'
 import ScrollProgress from './components/ScrollProgress'
 import BackToTop from './components/BackToTop'
+import ContactForm from './components/ContactForm'
 
 function App() {
   const projects = [
@@ -214,6 +215,10 @@ const filteredProjects = activeTag === 'all'
             </div>
           </div>
 
+          <Reveal delay={0.1}>
+            <ContactForm />
+          </Reveal>
+          
           <p className="footer-copy">
             {new Date().getFullYear()}. Все права защищены.
           </p>
