@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 function ContactForm() {
-  const [formData, setFormData] = useState({ name: '', contact: '', message: '' })
+  const [formData, setFormData] = useState({ name: '', contact: '', message: '' , website: '' })
   const [status, setStatus] = useState('idle')
 
   const handleChange = (e) => {
@@ -37,6 +37,18 @@ function ContactForm() {
       <p className="contact-subtitle">Напишите мне — я отвечу в ближайшее время</p>
 
       <form className="contact-form" onSubmit={handleSubmit}>
+
+        {/* Honeypot — скрытое поле для отлова ботов */}
+        <input
+            type="text"
+            name="website"
+            value={formData.website}
+            onChange={handleChange}
+            className="honeypot"
+            tabIndex="-1"
+            autoComplete="off"
+        />
+
         <div className="form-row">
           <input
             type="text"

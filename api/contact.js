@@ -3,8 +3,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method not allowed' })
   }
 
-  const { name, contact, message } = req.body
+  const { name, contact, message, website } = req.body
 
+  // Honeypot: если поле заполнено — это бот
+    if (website) {
+    // Отвечаем 200, чтобы бот думал, что всё ок
+    return res.status(200).json({ message: 'OK' })
+    }
+    
   if (!name || !message) {
     return res.status(400).json({ message: 'Имя и сообщение обязательны' })
   }
