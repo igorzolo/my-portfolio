@@ -65,7 +65,7 @@ const filteredProjects = activeTag === 'all'
 
       <header className="animate-fade-up">
         <div className="avatar-wrapper">
-          <img src="/ava.png" alt="error" className="avatar" />
+          <img src="/logoicon.png" alt="error" className="avatar" />
         </div>
         <div className="title-box">
           <Typewriter />
